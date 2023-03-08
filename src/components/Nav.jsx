@@ -1,7 +1,9 @@
-import React,{useState} from 'react'
+import { React, useState, useContext, useEffect } from 'react'
+import { AppContext } from '../App'
 
 const Nav = ({title}) => {
-  const [toggle, setToggle]=useState(false)
+  
+  const { toggle, setToggle } = useContext(AppContext)
   return (
     <div className='nav'>
       <div className="title">
