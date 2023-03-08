@@ -6,6 +6,7 @@
   --light-blue:#7afcff;
   --light-yellow:#feff9c;
   --yellow:#fff740;
+  --black:#000;
 }
 *{
   margin: 0;
@@ -22,7 +23,7 @@ body{
   margin: 0 auto;
 }
 .main-layout{
- 
+ border: solid red;
 }
 .nav{
   display: flex;
@@ -33,6 +34,10 @@ body{
 }
 .nav .title{
   display: flex;
+}
+.nav .link{
+ text-decoration: none;
+ color: var(--black);
 }
 .search{
   height: 5vh;
@@ -54,6 +59,7 @@ body{
  cursor: pointer;
  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
  transition: all 0.2s ease-in-out;
+ font-size: 1.1rem;
 }
 .toggle-btn button:hover{
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);

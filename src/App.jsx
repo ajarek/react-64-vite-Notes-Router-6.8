@@ -1,8 +1,9 @@
 import { createContext, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Error from './components/Error'
+import Error from './pages/Error'
 import Main, { mainLoader } from './layouts/Main'
 import Dashboard from './pages/Dashboard'
+import Note from './pages/Note'
 export const AppContext = createContext()
 
 const router = createBrowserRouter([
@@ -19,9 +20,15 @@ const router = createBrowserRouter([
         // action: dashboardAction,
         errorElement: <Error />,
       },
-     
+      {
+        path: 'note',
+        element: <Note />,
+        // loader: expensesLoader,
+        
+      },
      
     ],
+
   },
 ])
 function App() {
