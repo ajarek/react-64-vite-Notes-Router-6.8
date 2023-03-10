@@ -7,8 +7,8 @@ export const noteAction = async ({ request }) => {
   const data = await request.formData()
   const formData = Object.fromEntries(data)
   try {
-    saveStorage(formData,'notes')
-    return redirect("/");
+    saveStorage(formData, 'notes')
+    return redirect('/')
   } catch (err) {
     throw new Error(err.message)
   }
@@ -56,7 +56,7 @@ const Note = () => {
         <input
           type='hidden'
           name='date'
-          value={new Date().toLocaleDateString("pl-PL")}
+          value={new Date().toLocaleDateString('pl-PL')}
         />
         <div className='form-input'>
           <button
