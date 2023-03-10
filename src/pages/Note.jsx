@@ -1,14 +1,36 @@
-import React, {useRef} from 'react'
+import React, {useRef,useEffect, useState} from 'react'
 import { Form } from 'react-router-dom'
 const Note = () => {
   const focusRef= useRef()
+  const [formData, setFormData] = useState({});
+  useEffect(()=>{
+   focusRef.current.focus();
+  })
+
+  function handleSubmit(event) {
+   
+    event.preventDefault();
+    
+    const data = Object.fromEntries(new FormData(event.target).entries());
+    setFormData(data)
+  
+ 
+}
+  
+  
+  console.log(formData);
+  
+  
+  
+
+  
   return (
-    <div>
+    <div className='note'>
       <h2>Add a Note</h2>
-      <Form
-        method='post'
+      <form
         className='form'
-        
+        method='post'
+        onSubmit={handleSubmit}
       >
         <div className='form-input'>
           <label htmlFor='newTitle'>Title</label>
@@ -30,6 +52,7 @@ const Note = () => {
             placeholder='e.g., Lorem... '
             required
             
+            
           />
         </div>
         <input type="hidden" name='_action' value={'createBudget'} />
@@ -38,10 +61,10 @@ const Note = () => {
           type='submit'
           className='btn btn-dark'
         >
-                  
+             Add Note     
         </button>
         </div>
-      </Form>
+      </form>
     </div>
   )
 }

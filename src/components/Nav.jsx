@@ -10,13 +10,13 @@ const Nav = ({title}) => {
       <Link to={'/'} className={'link'}>
       <div className="title">
         
-        <h1 style={toggle?{color:''}:{}}>{title}</h1>
+        <h1 style={toggle?{color:'white'}:{}}>{title}</h1>
         <img src="/logo.png" alt="" />
       </div>
       </Link>
       <Link to={'/note'} className='link'>
-      <div className="add-note">
-        <h2 style={toggle?{color:''}:{}}>Add Note ➕</h2>
+      <div className="toggle-btn">
+        <button >Add Note ➕</button>
       </div>
       </Link>
       <div className="toggle-btn">
