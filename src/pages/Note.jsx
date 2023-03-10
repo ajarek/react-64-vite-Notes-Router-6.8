@@ -27,7 +27,7 @@ const Note = () => {
   return (
     <div className='note'>
       <h2>Add a Note</h2>
-      <form
+      <Form
         className='form'
         method='post'
         onSubmit={handleSubmit}
@@ -64,7 +64,7 @@ const Note = () => {
              Add Note     
         </button>
         </div>
-      </form>
+      </Form>
     </div>
   )
 }
