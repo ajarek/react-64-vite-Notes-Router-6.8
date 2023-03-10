@@ -2,7 +2,7 @@ import { createContext, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './pages/Error'
 import Main, { mainLoader } from './layouts/Main'
-import Dashboard from './pages/Dashboard'
+import Dashboard,{dashboardLoader} from './pages/Dashboard'
 import Note, {noteAction} from './pages/Note'
 export const AppContext = createContext()
 
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
-        // loader: dashboardLoader,
+         loader: dashboardLoader,
         // action: dashboardAction,
         errorElement: <Error />,
       },

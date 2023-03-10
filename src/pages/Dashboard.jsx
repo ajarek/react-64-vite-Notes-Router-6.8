@@ -1,9 +1,22 @@
 import React from 'react'
+import { Outlet, useLoaderData } from 'react-router-dom'
 import { fetchStorage } from '../helpers/localStorage'
 import { randomArray } from '../helpers/randomArray'
 
-const Dashboard = () => {
+
+export const dashboardLoader = () => {
   const data = fetchStorage('notes') || []
+  return data
+}
+
+
+const Dashboard = () => {
+ 
+  const data = useLoaderData()
+
+
+
+  
   const colorArray=['#ff7eb9','#ff65a3','#7afcff','#0eeaed','#feff9c','#fff740']
   return (
     <div className='dashboard'>
@@ -27,7 +40,7 @@ const Dashboard = () => {
           )
         })
       ) : (
-        <p>no data</p>
+        <p>No data! ...Add Note</p>
       )}
     </div>
   )
