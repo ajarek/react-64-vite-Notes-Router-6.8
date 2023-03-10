@@ -1,33 +1,25 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { Form } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
+import { saveStorage } from '../helpers'
 
-export async function dashboardAction({request}) {
+export const noteAction = async ({ request }) => {
   const data = await request.formData()
   const formData = Object.fromEntries(data)
-  try{
-  localStorage.setItem('notes', JSON.stringify(formData))
-  return formData
+  try {
+    saveStorage(formData)
+    return formData
+  } catch (err) {
+    throw new Error(err.message)
+  }
 }
-catch(err){
-  throw new Error(err.message)
-}
-
-}
-
-
-
 
 const Note = () => {
   const focusRef = useRef()
-  
+
   useEffect(() => {
     focusRef.current.focus()
   })
-
-  
-
-  
 
   return (
     <div className='note'>
@@ -35,7 +27,6 @@ const Note = () => {
       <Form
         className='form'
         method='post'
-        // onSubmit={handleSubmit}
       >
         <div className='form-input'>
           <label htmlFor='newTitle'>Title</label>
@@ -61,6 +52,11 @@ const Note = () => {
           type='hidden'
           name='id'
           value={uuidv4()}
+        />
+        <input
+          type='hidden'
+          name='DATE'
+          value={new Date()}
         />
         <div className='form-input'>
           <button

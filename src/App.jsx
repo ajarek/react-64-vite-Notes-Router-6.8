@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './pages/Error'
 import Main, { mainLoader } from './layouts/Main'
 import Dashboard from './pages/Dashboard'
-import Note, {dashboardAction} from './pages/Note'
+import Note, {noteAction} from './pages/Note'
 export const AppContext = createContext()
 
 const router = createBrowserRouter([
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: 'note',
         element: <Note />,
-        action:dashboardAction,
+        action:noteAction,
         errorElement: <Error />,
         
       },
