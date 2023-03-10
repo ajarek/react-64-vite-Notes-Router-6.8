@@ -1,14 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Form } from 'react-router-dom'
+import { Form, redirect } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import { saveStorage } from '../helpers'
+import { saveStorage } from '../helpers/localStorage'
 
 export const noteAction = async ({ request }) => {
   const data = await request.formData()
   const formData = Object.fromEntries(data)
   try {
-    saveStorage(formData)
-    return formData
+    saveStorage(formData,'notes')
+    return redirect("/");
   } catch (err) {
     throw new Error(err.message)
   }
@@ -55,8 +55,8 @@ const Note = () => {
         />
         <input
           type='hidden'
-          name='DATE'
-          value={new Date()}
+          name='date'
+          value={new Date().toLocaleDateString("pl-PL")}
         />
         <div className='form-input'>
           <button
