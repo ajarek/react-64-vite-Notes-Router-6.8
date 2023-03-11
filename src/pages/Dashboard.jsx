@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useLoaderData,redirect } from 'react-router-dom'
 import { fetchStorage } from '../helpers/localStorage'
 import { randomArray } from '../helpers/randomArray'
 import { deleteStorage, saveStorage} from '../helpers/localStorage'
-
+import { AppContext } from '../App'
 export const dashboardLoader = () => {
   const data = fetchStorage('notes') || []
   return data
@@ -12,6 +12,7 @@ export const dashboardLoader = () => {
 const Dashboard = () => {
   const data = useLoaderData()
   const [list, setList] = useState([])
+  const { searchTerm, setSearchTerm } = useContext(AppContext)
   
   useEffect(() => {
     setList(data);
@@ -22,6 +23,12 @@ const Dashboard = () => {
     localStorage.setItem('notes', JSON.stringify(updatedList));
     setList(updatedList);
   }
+
+  const filteredItems = list.filter(item => {
+    return item.newTitle.toLowerCase().includes(searchTerm.toLowerCase()) || 
+           item.newDescription.toLowerCase().includes(searchTerm.toLowerCase())
+  });
+
 
   const colorArray = [
     '#ff7eb9',
@@ -34,8 +41,8 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard'>
-      {list && list.length > 0 ? (
-        list.map((note) => {
+      {filteredItems && filteredItems.length > 0 ? (
+        filteredItems.map((note) => {
           return (
             <div
               className='card'

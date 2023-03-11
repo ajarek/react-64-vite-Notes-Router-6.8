@@ -31,7 +31,7 @@ const router = createBrowserRouter([
 ])
 function App() {
   const [toggle, setToggle] = useState(false)
-
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <div
       className='App'
@@ -45,7 +45,7 @@ function App() {
           : {}
       }
     >
-      <AppContext.Provider value={{ toggle, setToggle }}>
+      <AppContext.Provider value={{ toggle, setToggle, searchTerm, setSearchTerm }}>
         <RouterProvider router={router} />
       </AppContext.Provider>
     </div>

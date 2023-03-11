@@ -94,6 +94,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   color: var(--black);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3)
 }
 .dashboard .card .date {
   display: flex;
