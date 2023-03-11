@@ -42,7 +42,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard'>
       {filteredItems && filteredItems.length > 0 ? (
-        filteredItems.map((note) => {
+        filteredItems.sort((a,b)=>a.date-b.date).map((note) => {
           return (
             <div
               className='card'
