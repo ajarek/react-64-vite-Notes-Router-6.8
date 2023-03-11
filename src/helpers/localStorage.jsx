@@ -10,3 +10,6 @@ export const saveStorage = (newData, name) => {
 export const fetchStorage = (key) => {
   return JSON.parse(localStorage.getItem(key))
 }
+export const deleteStorage = (key)=>{
+  return localStorage.removeItem(key)
+}

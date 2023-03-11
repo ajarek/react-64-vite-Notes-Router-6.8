@@ -1,7 +1,8 @@
-import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useLoaderData,redirect } from 'react-router-dom'
 import { fetchStorage } from '../helpers/localStorage'
 import { randomArray } from '../helpers/randomArray'
+import { deleteStorage, saveStorage} from '../helpers/localStorage'
 
 export const dashboardLoader = () => {
   const data = fetchStorage('notes') || []
@@ -10,6 +11,17 @@ export const dashboardLoader = () => {
 
 const Dashboard = () => {
   const data = useLoaderData()
+  const [list, setList] = useState([])
+  
+  useEffect(() => {
+    setList(data);
+  }, []);
+
+  const handleDelete = (itemId) => {
+    const updatedList = list.filter(item => item.id !== itemId);
+    localStorage.setItem('notes', JSON.stringify(updatedList));
+    setList(updatedList);
+  }
 
   const colorArray = [
     '#ff7eb9',
@@ -19,10 +31,11 @@ const Dashboard = () => {
     '#feff9c',
     '#fff740',
   ]
+
   return (
     <div className='dashboard'>
-      {data && data.length > 0 ? (
-        data.map((note) => {
+      {list && list.length > 0 ? (
+        list.map((note) => {
           return (
             <div
               className='card'
@@ -35,7 +48,7 @@ const Dashboard = () => {
               </div>
               <div className='date'>
                 <p className='card-date'>{note.date}</p>
-                <button>🗑️</button>
+                <button onClick={()=>handleDelete(note.id)}>🗑️</button>
               </div>
             </div>
           )
