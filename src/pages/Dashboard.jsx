@@ -18,16 +18,20 @@ const Dashboard = () => {
     setList(data);
   }, []);
 
+  
+
   const handleDelete = (itemId) => {
     const updatedList = list.filter(item => item.id !== itemId);
     localStorage.setItem('notes', JSON.stringify(updatedList));
     setList(updatedList);
   }
-
-  const filteredItems = list.filter(item => {
+ 
+  const filteredItems = list
+  .filter(item => {
     return item.newTitle.toLowerCase().includes(searchTerm.toLowerCase()) || 
            item.newDescription.toLowerCase().includes(searchTerm.toLowerCase())
-  });
+  })
+  
 
 
   const colorArray = [
@@ -38,11 +42,16 @@ const Dashboard = () => {
     '#feff9c',
     '#fff740',
   ]
-
+  
   return (
     <div className='dashboard'>
       {filteredItems && filteredItems.length > 0 ? (
-        filteredItems.sort((a, b) => a.date - b.date).map((note) => {
+        
+        filteredItems.sort((a, b) =>  {
+          if (a.date < b.date) return 1;
+          if (a.date > b.date) return -1;
+          return 0;
+        }).map((note) => {
           return (
             <div
               className='card'
