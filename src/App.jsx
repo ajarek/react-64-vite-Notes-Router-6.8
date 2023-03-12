@@ -4,6 +4,7 @@ import Error from './pages/Error'
 import Main, { mainLoader } from './layouts/Main'
 import Dashboard, { dashboardLoader } from './pages/Dashboard'
 import Note, { noteAction } from './pages/Note'
+import NoteEdit, { noteEditAction } from './pages/NoteEdit'
 export const AppContext = createContext()
 
 const router = createBrowserRouter([
@@ -26,12 +27,28 @@ const router = createBrowserRouter([
         action: noteAction,
         errorElement: <Error />,
       },
+      {
+        path: 'note-edit',
+        
+        
+        errorElement: <Error />,
+        children: [
+          {
+            path: ":id",
+            action: noteEditAction,
+            element: <NoteEdit />,
+            errorElement: <Error />,
+          },
+          
+        ],
+      },
     ],
   },
 ])
 function App() {
   const [toggle, setToggle] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
+  const [list, setList] = useState([])
  
   return (
     <div
@@ -46,7 +63,7 @@ function App() {
           : {}
       }
     >
-      <AppContext.Provider value={{ toggle, setToggle, searchTerm, setSearchTerm }}>
+      <AppContext.Provider value={{ toggle, setToggle, searchTerm, setSearchTerm,list, setList }}>
         <RouterProvider router={router} />
       </AppContext.Provider>
     </div>

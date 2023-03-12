@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { useLoaderData,redirect } from 'react-router-dom'
+import { useLoaderData, redirect, useNavigate } from 'react-router-dom'
 import { fetchStorage } from '../helpers/localStorage'
 import { randomArray } from '../helpers/randomArray'
-import { deleteStorage, saveStorage} from '../helpers/localStorage'
+import { deleteStorage, saveStorage } from '../helpers/localStorage'
 import { AppContext } from '../App'
 export const dashboardLoader = () => {
   const data = fetchStorage('notes') || []
@@ -11,28 +11,26 @@ export const dashboardLoader = () => {
 
 const Dashboard = () => {
   const data = useLoaderData()
-  const [list, setList] = useState([])
-  const { searchTerm, setSearchTerm } = useContext(AppContext)
-  
-  useEffect(() => {
-    setList(data);
-  }, []);
 
-  
+  const { searchTerm, setSearchTerm, list, setList } = useContext(AppContext)
+  const navigate = useNavigate()
+  useEffect(() => {
+    setList(data)
+  }, [])
 
   const handleDelete = (itemId) => {
-    const updatedList = list.filter(item => item.id !== itemId);
-    localStorage.setItem('notes', JSON.stringify(updatedList));
-    setList(updatedList);
+    const updatedList = list.filter((item) => item.id !== itemId)
+    localStorage.setItem('notes', JSON.stringify(updatedList))
+    setList(updatedList)
   }
- 
-  const filteredItems = list
-  .filter(item => {
-    return item.newTitle.toLowerCase().includes(searchTerm.toLowerCase()) || 
-           item.newDescription.toLowerCase().includes(searchTerm.toLowerCase())
-  })
-  
 
+  const filteredItems = list.filter((item) => {
+    
+    return (
+      item.newTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.newDescription.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  })
 
   const colorArray = [
     '#ff7eb9',
@@ -42,33 +40,48 @@ const Dashboard = () => {
     '#feff9c',
     '#fff740',
   ]
-  
+
+  const handleEdit = (e, id) => {
+    if (e.target.className !== 'edit-button') {
+      navigate(`/note-edit/${id}/`)
+     
+    }
+    
+  }
+
   return (
     <div className='dashboard'>
       {filteredItems && filteredItems.length > 0 ? (
-        
-        filteredItems.sort((a, b) =>  {
-          if (a.date < b.date) return 1;
-          if (a.date > b.date) return -1;
-          return 0;
-        }).map((note) => {
-          return (
-            <div
-              className='card'
-              key={note.id}
-              style={{ background: randomArray(colorArray) }}
-            >
-              <div className='card-body'>
-                <h5 className='card-title'>{note.newTitle}</h5>
-                <p className='card-text'>{note.newDescription}</p>
+        filteredItems
+          .sort((a, b) => {
+            if (a.date < b.date) return 1
+            if (a.date > b.date) return -1
+            return 0
+          })
+          .map((note) => {
+            return (
+              <div
+                className='card'
+                key={note.id}
+                style={{ background: randomArray(colorArray) }}
+                onClick={(e) => handleEdit(e, note.id)}
+              >
+                <div className='card-body'>
+                  <h5 className='card-title'>{note.newTitle}</h5>
+                  <p className='card-text'>{note.newDescription}</p>
+                </div>
+                <div className='date'>
+                  <p className='card-date'>{note.date}</p>
+                  <button
+                    onClick={() => handleDelete(note.id)}
+                    className='edit-button'
+                  >
+                    🗑️
+                  </button>
+                </div>
               </div>
-              <div className='date'>
-                <p className='card-date'>{note.date}</p>
-                <button onClick={()=>handleDelete(note.id)}>🗑️</button>
-              </div>
-            </div>
-          )
-        })
+            )
+          })
       ) : (
         <p>No data! ...Add Note</p>
       )}
