@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState,useEffect } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './pages/Error'
 import Main, { mainLoader } from './layouts/Main'
@@ -32,6 +32,7 @@ const router = createBrowserRouter([
 function App() {
   const [toggle, setToggle] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
+ 
   return (
     <div
       className='App'

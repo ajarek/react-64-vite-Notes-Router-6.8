@@ -1,11 +1,14 @@
 import { React, useState, useContext, useEffect } from 'react'
+import Hamburger from 'hamburger-react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../App'
 
 const Nav = ({ title }) => {
   const { toggle, setToggle } = useContext(AppContext)
+  const [isOpen, setOpen] = useState(false)
   return (
-    <div className='nav'>
+    <nav className='nav'>
+      <div className="nav-wrapper">
       <Link
         to={'/'}
         className={'link'}
@@ -18,6 +21,8 @@ const Nav = ({ title }) => {
           />
         </div>
       </Link>
+      </div>
+      <ul className={!isOpen ? 'wrapper' : 'wrapper navbar-none'}>
       <Link
         to={'/note'}
         className='link'
@@ -29,7 +34,27 @@ const Nav = ({ title }) => {
       <div className='toggle-btn'>
         <button onClick={() => setToggle(!toggle)}>Toggle Mode</button>
       </div>
-    </div>
+      </ul>
+      <div className='hamburger'>
+        <Hamburger
+          size={30}
+          duration={0.3}
+          distance='md'
+          color={isOpen ? '#f15e50' : '#080808'}
+          easing='ease-in'
+          rounded
+          label='Show menu'
+          onToggle={(toggled) => {
+            setOpen(true)
+            if (toggled) {
+              // open a menu
+            } else {
+              setOpen(false)
+            }
+          }}
+        />
+      </div>
+    </nav>
   )
 }
 
