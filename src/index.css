@@ -228,3 +228,15 @@ body {
     transform: translateY(100vh);
   }
 }
+@media (max-width: 416px) {
+  .dashboard {
+    padding: 0.5rem;
+    
+  }
+  .dashboard .card {
+    width: 100%;
+  }
+  .note .form {
+    width: 100%;
+  }
+}
