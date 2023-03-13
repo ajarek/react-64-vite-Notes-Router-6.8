@@ -4,7 +4,7 @@
 ## Setup:
 * npm install
 * start: npm run dev
-* 
+
 https://ajarek.github.io/react-64-vite-Notes-Router-6.8/
 
 
