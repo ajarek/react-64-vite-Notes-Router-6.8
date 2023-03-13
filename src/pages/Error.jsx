@@ -12,14 +12,26 @@ const Error = () => {
         <button
           className='btn btn-dark'
           onClick={() => navigate(-1)}
+          style={{
+            border: '2px solid violet',
+            marginTop: '1rem',
+            padding: '0 1rem',
+          }}
         >
-          <span>Go Back</span>
+          <span>Go Back 🔙</span>
         </button>
         <Link
           to='/'
-          className='btn btn-dark'
+          className='link'
+          style={{
+            border: '2px solid black',
+            fontSize: '1.3rem',
+            fontWeight: '500',
+            marginTop: '1rem',
+            padding: '0 1rem'
+          }}
         >
-          <span>Go Home</span>
+          <span>Go Home 🏠</span>
         </Link>
       </div>
     </div>
