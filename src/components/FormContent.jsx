@@ -44,7 +44,7 @@ const FormContent = ({headerTitle,valueTitle, valueArea,buttonName}) => {
         <input
           type='hidden'
           name='date'
-          value={new Date().toLocaleDateString('pl-PL')}
+          value={new Date().toLocaleString('pl-PL')}
         />
         <div className='form-input'>
           <button
