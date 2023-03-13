@@ -1,7 +1,7 @@
-import React,{useRef,useEffect} from 'react'
-import { Form, redirect } from 'react-router-dom'
+import React, { useRef, useEffect } from 'react'
+import { Form } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-const FormContent = ({headerTitle,valueTitle, valueArea,buttonName}) => {
+const FormContent = ({ headerTitle, valueTitle, valueArea, buttonName }) => {
   const focusRef = useRef()
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const FormContent = ({headerTitle,valueTitle, valueArea,buttonName}) => {
             type='submit'
             className='btn btn-dark'
           >
-           {buttonName}
+            {buttonName}
           </button>
         </div>
       </Form>

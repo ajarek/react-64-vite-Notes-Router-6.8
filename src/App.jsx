@@ -1,4 +1,4 @@
-import { createContext, useState,useEffect } from 'react'
+import { createContext, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './pages/Error'
 import Main, { mainLoader } from './layouts/Main'
@@ -29,17 +29,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'note-edit',
-        
-        
+
         errorElement: <Error />,
         children: [
           {
-            path: ":id",
+            path: ':id',
             action: noteEditAction,
             element: <NoteEdit />,
             errorElement: <Error />,
           },
-          
         ],
       },
     ],
@@ -47,10 +45,9 @@ const router = createBrowserRouter([
 ])
 function App() {
   const [toggle, setToggle] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('')
   const [list, setList] = useState([])
-  
- 
+
   return (
     <div
       className='App'
@@ -64,7 +61,9 @@ function App() {
           : {}
       }
     >
-      <AppContext.Provider value={{ toggle, setToggle, searchTerm, setSearchTerm,list, setList }}>
+      <AppContext.Provider
+        value={{ toggle, setToggle, searchTerm, setSearchTerm, list, setList }}
+      >
         <RouterProvider router={router} />
       </AppContext.Provider>
     </div>

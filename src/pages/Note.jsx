@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react'
-import { Form, redirect } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid'
+import React from 'react'
+import { redirect } from 'react-router-dom'
 import { saveStorage } from '../helpers/localStorage'
 import FormContent from '../components/FormContent'
 export const noteAction = async ({ request }) => {
@@ -15,12 +14,10 @@ export const noteAction = async ({ request }) => {
 }
 
 const Note = () => {
- 
-
   return (
     <FormContent
-    headerTitle={'Add a new note'}
-    buttonName={'Add Note'}
+      headerTitle={'Add a new note'}
+      buttonName={'Add Note'}
     />
   )
 }

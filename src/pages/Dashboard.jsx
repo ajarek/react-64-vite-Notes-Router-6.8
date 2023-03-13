@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { useLoaderData, redirect, useNavigate } from 'react-router-dom'
+import React, { useEffect,  useContext } from 'react'
+import { useLoaderData,  useNavigate } from 'react-router-dom'
 import { fetchStorage } from '../helpers/localStorage'
 import { randomArray } from '../helpers/randomArray'
-import { deleteStorage, saveStorage } from '../helpers/localStorage'
 import { AppContext } from '../App'
 export const dashboardLoader = () => {
   const data = fetchStorage('notes') || []
@@ -12,7 +11,7 @@ export const dashboardLoader = () => {
 const Dashboard = () => {
   const data = useLoaderData()
 
-  const { searchTerm, setSearchTerm, list, setList } = useContext(AppContext)
+  const { searchTerm,  list, setList } = useContext(AppContext)
   const navigate = useNavigate()
   useEffect(() => {
     setList(data)

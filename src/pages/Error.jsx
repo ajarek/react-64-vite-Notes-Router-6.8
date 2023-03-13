@@ -28,7 +28,7 @@ const Error = () => {
             fontSize: '1.3rem',
             fontWeight: '500',
             marginTop: '1rem',
-            padding: '0 1rem'
+            padding: '0 1rem',
           }}
         >
           <span>Go Home 🏠</span>

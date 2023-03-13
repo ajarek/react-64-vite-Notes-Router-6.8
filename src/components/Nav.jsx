@@ -1,4 +1,4 @@
-import { React, useState, useContext, useEffect } from 'react'
+import { React, useState, useContext } from 'react'
 import Hamburger from 'hamburger-react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../App'
@@ -8,32 +8,32 @@ const Nav = ({ title }) => {
   const [isOpen, setOpen] = useState(false)
   return (
     <nav className='nav'>
-      <div className="nav-wrapper">
-      <Link
-        to={'/'}
-        className={'link'}
-      >
-        <div className='title'>
-          <h1 style={toggle ? { color: 'white' } : {}}>{title}</h1>
-          <img
-            src='/logo.png'
-            alt=''
-          />
-        </div>
-      </Link>
+      <div className='nav-wrapper'>
+        <Link
+          to={'/'}
+          className={'link'}
+        >
+          <div className='title'>
+            <h1 style={toggle ? { color: 'white' } : {}}>{title}</h1>
+            <img
+              src='/logo.png'
+              alt=''
+            />
+          </div>
+        </Link>
       </div>
       <ul className={!isOpen ? 'wrapper' : 'wrapper navbar-none'}>
-      <Link
-        to={'/note'}
-        className='link'
-      >
+        <Link
+          to={'/note'}
+          className='link'
+        >
+          <div className='toggle-btn'>
+            <button>Add Note ➕</button>
+          </div>
+        </Link>
         <div className='toggle-btn'>
-          <button>Add Note ➕</button>
+          <button onClick={() => setToggle(!toggle)}>Toggle Mode</button>
         </div>
-      </Link>
-      <div className='toggle-btn'>
-        <button onClick={() => setToggle(!toggle)}>Toggle Mode</button>
-      </div>
       </ul>
       <div className='hamburger'>
         <Hamburger
