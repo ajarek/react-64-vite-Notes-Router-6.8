@@ -1,6 +1,6 @@
 # react-64-vite-Notes-Router-6.8
-#### Technologies used: react, react-router-dom": "^6.8.0"
-#### Hooks used: useState,  useEffect ,useRef, @hamburger-react,uuid
+#### Technologies used: react, react-router-dom": "^6.8.0",localStorage
+#### Hooks used: useState,  useEffect ,useRef,useContext, @hamburger-react, uuid.
 ## Setup:
 * npm install
 * start: npm run dev
