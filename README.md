@@ -1,4 +1,9 @@
 # react-64-vite-Notes-Router-6.8
+#### Technologies used: react, react-router-dom": "^6.8.0"
+#### Hooks used: useState,  useEffect ,useRef, @hamburger-react,uuid
+## Setup:
+* npm install
+* start: npm run dev
 https://ajarek.github.io/react-64-vite-Notes-Router-6.8/
 
 
