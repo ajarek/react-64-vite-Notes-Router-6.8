@@ -16,7 +16,7 @@ const Nav = ({ title }) => {
           <div className='title'>
             <h1 style={toggle ? { color: 'white' } : {}}>{title}</h1>
             <img
-              src='./logo.png'
+              src='/logo.png'
               alt=''
             />
           </div>
